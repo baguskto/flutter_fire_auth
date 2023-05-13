@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "408178090013",
+    "project_id": "fluttefireauth",
+    "storage_bucket": "fluttefireauth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:408178090013:android:2a4b0da1a759cc9a2166f4",
+        "android_client_info": {
+          "package_name": "com.baguskto.flutter_fire_auth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "408178090013-pb5bde3342sjnjhuc4phlu0vgf7odl0p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAB9RQZgnI7nwxwL0Qss0n8IpEyociR_f8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "408178090013-pb5bde3342sjnjhuc4phlu0vgf7odl0p.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "408178090013-qbelt331o0cfjp198te0ijo4srtspd39.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.baguskto.flutterFireAuth"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
