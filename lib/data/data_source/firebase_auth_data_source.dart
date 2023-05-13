@@ -1,7 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseAuthDataSource {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth;
+
+  FirebaseAuthDataSource({required FirebaseAuth auth})
+      : _auth = auth;
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<UserCredential> registerUser(String name, String email, String password) {
     return _auth.createUserWithEmailAndPassword(email: email, password: password);

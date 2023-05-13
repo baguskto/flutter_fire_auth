@@ -21,20 +21,13 @@ import '../../domain/usecases/sign_out_usecase.dart';
 import '../controllers/auth_controller.dart';
 import '../controllers/user_controller.dart';
 
-// class AuthBinding extends Bindings {
-//   @override
-//   void dependencies() {
-//     Get.lazyPut(() => AuthController());
-//     Get.lazyPut(() => UserController());
-//   }
-// }
-
 class AuthBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<FirebaseAuth>(() => FirebaseAuth.instance);
     Get.lazyPut<FirebaseFirestore>(() => FirebaseFirestore.instance);
-    Get.lazyPut<FirebaseAuthDataSource>(() => FirebaseAuthDataSource());
+    Get.lazyPut<FirebaseAuthDataSource>(
+        () => FirebaseAuthDataSource(auth: Get.find<FirebaseAuth>()));
     Get.lazyPut<AuthRepository>(() => FirebaseAuthRepository(
         Get.find<FirebaseAuthDataSource>(),
         Get.find<UserDatabaseRepository>()));
@@ -62,7 +55,7 @@ class AuthBinding implements Bindings {
           Get.find<CreateUserUseCase>(),
         ));
 
-    Get.lazyPut<FirebaseUserDataSource>(() => FirebaseUserDataSource());
+    Get.lazyPut<FirebaseUserDataSource>(() => FirebaseUserDataSource(db: FirebaseFirestore.instance));
     Get.lazyPut<UserRepository>(
         () => UserRepositoryImpl(Get.find<FirebaseUserDataSource>()));
     Get.lazyPut<FetchUsersUseCase>(
