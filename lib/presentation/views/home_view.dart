@@ -18,11 +18,11 @@ class HomeView extends GetView<UserController> {
             },
             itemBuilder: (BuildContext context) {
               return [
-                PopupMenuItem(
+                const PopupMenuItem(
                   value: true,
                   child: Text('Verified Users'),
                 ),
-                PopupMenuItem(
+                const PopupMenuItem(
                   value: false,
                   child: Text('Unverified Users'),
                 ),

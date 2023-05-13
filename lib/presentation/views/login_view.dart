@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fire_auth/presentation/navigations/app_routes.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -7,8 +8,6 @@ import '../../domain/theme/theme.dart';
 import '../controllers/auth_controller.dart';
 
 class SignIn extends GetView<AuthController> {
-
-
   final FocusNode focusNodeEmail = FocusNode();
   final FocusNode focusNodePassword = FocusNode();
 
@@ -40,7 +39,6 @@ class SignIn extends GetView<AuthController> {
                           padding: const EdgeInsets.only(
                               top: 20.0, bottom: 20.0, left: 25.0, right: 25.0),
                           child: TextFormField(
-
                             controller: controller.emailController,
                             keyboardType: TextInputType.emailAddress,
                             style: const TextStyle(
@@ -49,7 +47,7 @@ class SignIn extends GetView<AuthController> {
                                 color: Colors.black),
                             decoration: const InputDecoration(
                               contentPadding:
-                              EdgeInsets.symmetric(vertical: 3.0),
+                                  EdgeInsets.symmetric(vertical: 3.0),
                               border: InputBorder.none,
                               icon: Icon(
                                 FontAwesomeIcons.envelope,
@@ -58,9 +56,9 @@ class SignIn extends GetView<AuthController> {
                               ),
                               hintText: 'Email Address',
                               hintStyle: TextStyle(
-                                  fontFamily: 'WorkSansSemiBold', fontSize: 17.0),
+                                  fontFamily: 'WorkSansSemiBold',
+                                  fontSize: 17.0),
                             ),
-
                             validator: (s) => controller.validateEmail(s!),
                           ),
                         ),
@@ -106,7 +104,8 @@ class SignIn extends GetView<AuthController> {
                                   _toggleSignInButton();
                                 },
                                 textInputAction: TextInputAction.go,
-                                validator: (s) => controller.validatePassword(s!),
+                                validator: (s) =>
+                                    controller.validatePassword(s!),
                               )),
                         ),
                       ],
@@ -171,7 +170,7 @@ class SignIn extends GetView<AuthController> {
           Padding(
             padding: const EdgeInsets.only(top: 10.0),
             child: TextButton(
-                onPressed: () {},
+                onPressed: () => Get.toNamed(AppRoutes.FORGOT_PASSWORD),
                 child: const Text(
                   'Forgot Password?',
                   style: TextStyle(
@@ -181,7 +180,6 @@ class SignIn extends GetView<AuthController> {
                       fontFamily: 'WorkSansMedium'),
                 )),
           ),
-
         ],
       ),
     );
