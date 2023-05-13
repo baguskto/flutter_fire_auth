@@ -45,6 +45,7 @@ class SignUp extends GetView<AuthController> {
                                 fontSize: 16.0,
                                 color: Colors.black),
                             decoration: const InputDecoration(
+                              errorMaxLines: 3,
                               border: InputBorder.none,
                               icon: Icon(
                                 FontAwesomeIcons.user,
@@ -75,6 +76,7 @@ class SignUp extends GetView<AuthController> {
                                 fontSize: 16.0,
                                 color: Colors.black),
                             decoration: const InputDecoration(
+                              errorMaxLines: 3,
                               border: InputBorder.none,
                               icon: Icon(
                                 FontAwesomeIcons.envelope,

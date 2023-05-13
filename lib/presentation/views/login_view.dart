@@ -47,6 +47,7 @@ class SignIn extends GetView<AuthController> {
                                 fontSize: 16.0,
                                 color: Colors.black),
                             decoration: const InputDecoration(
+                              errorMaxLines: 3,
                               contentPadding:
                                   EdgeInsets.symmetric(vertical: 3.0),
                               border: InputBorder.none,
@@ -72,7 +73,6 @@ class SignIn extends GetView<AuthController> {
                           padding: const EdgeInsets.only(
                               top: 20.0, bottom: 20.0, left: 25.0, right: 25.0),
                           child: Obx(() => TextFormField(
-                                // focusNode: focusNodePassword,
                                 controller: controller.passwordController,
                                 obscureText: _obscureTextPassword.value,
                                 style: const TextStyle(
@@ -80,6 +80,7 @@ class SignIn extends GetView<AuthController> {
                                     fontSize: 16.0,
                                     color: Colors.black),
                                 decoration: InputDecoration(
+                                  errorMaxLines: 3,
                                   border: InputBorder.none,
                                   icon: const Icon(
                                     FontAwesomeIcons.lock,
@@ -101,7 +102,6 @@ class SignIn extends GetView<AuthController> {
                                     ),
                                   ),
                                 ),
-
                                 textInputAction: TextInputAction.go,
                                 validator: (s) =>
                                     controller.validatePassword(s!),

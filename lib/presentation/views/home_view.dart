@@ -30,7 +30,7 @@ class HomeView extends GetView<UserController> {
             },
           ),
           IconButton(
-              onPressed: () => controller.authController.signOut(),
+              onPressed: () => controller.signOut(),
               icon: const Icon(Icons.logout_rounded))
         ],
         automaticallyImplyLeading: false,
@@ -39,18 +39,23 @@ class HomeView extends GetView<UserController> {
         if (controller.filteredUsers.isEmpty) {
           return Center(child: Text('No Found User'));
         } else {
-          return ListView.builder(
-            itemCount: controller.filteredUsers.length,
-            itemBuilder: (_, index) {
-              return ListTile(
-                title: Text(controller.filteredUsers[index].name!),
-                subtitle: Text(controller.filteredUsers[index].email!),
-                trailing: Text(
-                    controller.filteredUsers[index].hasConfirmedEmail!
-                        ? 'Verified'
-                        : 'Unverified'),
-              );
-            },
+          return RefreshIndicator(
+            onRefresh: () => controller.refreshStatusUser(),
+            child: ListView.builder(
+              itemCount: controller.filteredUsers.length,
+              itemBuilder: (_, index) {
+                return Card(
+                  child: ListTile(
+                    title: Text(controller.filteredUsers[index].name!),
+                    subtitle: Text(controller.filteredUsers[index].email!),
+                    trailing: Text(
+                        controller.filteredUsers[index].hasConfirmedEmail!
+                            ? 'Verified'
+                            : 'Unverified'),
+                  ),
+                );
+              },
+            ),
           );
         }
       }),

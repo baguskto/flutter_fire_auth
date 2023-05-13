@@ -3,36 +3,63 @@ import 'package:flutter_fire_auth/presentation/controllers/auth_controller.dart'
 import 'package:get/get.dart';
 
 import '../../data/models/user_model.dart';
+import '../../domain/usecases/check_and_update_email_verification_usecase.dart';
+import '../../domain/usecases/fetch_users_usecase.dart';
+import '../../domain/usecases/filter_users_usecase.dart';
+import '../../domain/usecases/sign_out_usecase.dart';
+import '../navigations/app_routes.dart';
 
 class UserController extends GetxController {
-  final FirebaseFirestore _db = FirebaseFirestore.instance;
   RxList<UserModel> userList = RxList<UserModel>();
   RxList<UserModel> filteredUsers = RxList<UserModel>();
-  AuthController authController = Get.find<AuthController>();
+  final FetchUsersUseCase fetchUsersUseCase;
+  final FilterUsersUseCase filterUsersUseCase;
+  final SignOutUseCase signOutUseCase;
+  final CheckAndUpdateEmailVerificationUseCase
+      checkAndUpdateEmailVerificationUseCase;
+
+  UserController(this.fetchUsersUseCase, this.filterUsersUseCase,
+      this.signOutUseCase, this.checkAndUpdateEmailVerificationUseCase);
 
   List<UserModel> get users => userList.value;
+  RxBool isHomeLoading = false.obs;
 
   @override
   void onInit() {
-    userList.bindStream(fetchUsers()); // fetch user data on initialization
+    userList.bindStream(
+        fetchUsersUseCase.execute()); // fetch user data on initialization
     ever(userList, (_) {
       // Update filteredUsers every time userList changes
       filteredUsers.assignAll(userList.value);
     });
-    print('asu ${filteredUsers.isEmpty}');
     super.onInit();
-  }
-
-  // Fetch user data
-  Stream<List<UserModel>> fetchUsers() {
-    return _db.collection('users').snapshots().map((query) =>
-        query.docs.map((item) => UserModel.fromJson(item.data())).toList());
   }
 
   // Filter user data
   void filterUsers(bool hasConfirmedEmail) {
-    filteredUsers.value = users
-        .where((user) => user.hasConfirmedEmail == hasConfirmedEmail)
-        .toList();
+    filteredUsers.value = filterUsersUseCase.execute(users, hasConfirmedEmail);
+  }
+
+  Future<void> signOut() async {
+    try {
+      await signOutUseCase.execute();
+      Get.offAllNamed(AppRoutes.AUTH);
+    } catch (e) {
+      Get.snackbar('Error signing out:', e.toString());
+    }
+  }
+
+  Future<void> refreshStatusUser() async {
+    isHomeLoading.toggle();
+    try {
+      await checkAndUpdateEmailVerificationUseCase.execute();
+      userList.refresh();
+      isHomeLoading.toggle();
+    } catch (e) {
+      isHomeLoading.toggle();
+      Get.snackbar('Failed', e.toString());
+    }
   }
 }
+
+

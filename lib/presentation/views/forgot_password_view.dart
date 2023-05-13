@@ -78,6 +78,7 @@ class ForgotPasswordView extends GetView<AuthController> {
                                 fontSize: 16.0,
                                 color: Colors.black),
                             decoration: const InputDecoration(
+                              errorMaxLines: 3,
                               contentPadding:
                                   EdgeInsets.symmetric(vertical: 3.0),
                               border: InputBorder.none,
