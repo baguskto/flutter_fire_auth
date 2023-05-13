@@ -2,6 +2,8 @@
 
 Flutter Fire Auth is a Flutter-based mobile application with features such as User Registration, Login, Forgot Password, and Home page.
 
+![Screenshot](https://github.com/baguskto/flutter_fire_auth/blob/ee9589de23b38801e7d6e3f7b82538675208ed29/assets/doc/screenshot_1.jpeg)
+
 
 ## Features
 
