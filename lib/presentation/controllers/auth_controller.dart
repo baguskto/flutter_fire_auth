@@ -19,6 +19,7 @@ class AuthController extends GetxController
       TextEditingController();
 
   final GlobalKey<FormState> formKey2 = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey3 = GlobalKey<FormState>();
 
   final RxBool obscureTextPassword = true.obs;
   final RxBool obscureTextConfirmPassword = true.obs;
@@ -29,6 +30,9 @@ class AuthController extends GetxController
   Color right = Colors.white;
 
   RxBool isLeft = true.obs;
+
+  final TextEditingController fpEmailController = TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
