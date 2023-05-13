@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../domain/theme/theme.dart';
 import '../controllers/auth_controller.dart';
+import '../widgets/loading_widget.dart';
 
 class SignUp extends GetView<AuthController> {
   SignUp({super.key});
@@ -107,7 +108,6 @@ class SignUp extends GetView<AuthController> {
                                     color: Colors.black),
                                 decoration: InputDecoration(
                                   errorMaxLines: 3,
-
                                   border: InputBorder.none,
                                   icon: const Icon(
                                     FontAwesomeIcons.lock,
@@ -139,47 +139,49 @@ class SignUp extends GetView<AuthController> {
                           padding: const EdgeInsets.only(
                               top: 20.0, bottom: 20.0, left: 25.0, right: 25.0),
                           child: Obx(() => TextFormField(
-                            validator: (s) =>
-                                controller.validateConfirmPassword(
-                                    controller
-                                        .signupConfirmPasswordController.text,
-                                    s!),
-                            controller:
-                            controller.signupConfirmPasswordController,
-                            obscureText:
-                            controller.obscureTextConfirmPassword.value,
-                            autocorrect: false,
-                            style: const TextStyle(
-                                fontFamily: 'WorkSansSemiBold',
-                                fontSize: 16.0,
-                                color: Colors.black),
-                            decoration: InputDecoration(
-                              errorMaxLines: 3,
-                              border: InputBorder.none,
-                              icon: const Icon(
-                                FontAwesomeIcons.lock,
-                                color: Colors.black,
-                              ),
-                              hintText: 'Confirmation',
-                              hintStyle: const TextStyle(
-                                  fontFamily: 'WorkSansSemiBold',
-                                  fontSize: 16.0),
-                              suffixIcon: GestureDetector(
-                                onTap: _toggleSignupConfirm,
-                                child: Icon(
-                                  controller.obscureTextConfirmPassword.value
-                                      ? FontAwesomeIcons.eye
-                                      : FontAwesomeIcons.eyeSlash,
-                                  size: 15.0,
-                                  color: Colors.black,
+                                validator: (s) =>
+                                    controller.validateConfirmPassword(
+                                        controller
+                                            .signupConfirmPasswordController
+                                            .text,
+                                        s!),
+                                controller:
+                                    controller.signupConfirmPasswordController,
+                                obscureText:
+                                    controller.obscureTextConfirmPassword.value,
+                                autocorrect: false,
+                                style: const TextStyle(
+                                    fontFamily: 'WorkSansSemiBold',
+                                    fontSize: 16.0,
+                                    color: Colors.black),
+                                decoration: InputDecoration(
+                                  errorMaxLines: 3,
+                                  border: InputBorder.none,
+                                  icon: const Icon(
+                                    FontAwesomeIcons.lock,
+                                    color: Colors.black,
+                                  ),
+                                  hintText: 'Confirmation',
+                                  hintStyle: const TextStyle(
+                                      fontFamily: 'WorkSansSemiBold',
+                                      fontSize: 16.0),
+                                  suffixIcon: GestureDetector(
+                                    onTap: _toggleSignupConfirm,
+                                    child: Icon(
+                                      controller
+                                              .obscureTextConfirmPassword.value
+                                          ? FontAwesomeIcons.eye
+                                          : FontAwesomeIcons.eyeSlash,
+                                      size: 15.0,
+                                      color: Colors.black,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                            onFieldSubmitted: (_) {
-                              _toggleSignUpButton();
-                            },
-                            textInputAction: TextInputAction.go,
-                          )),
+                                onFieldSubmitted: (_) {
+                                  _toggleSignUpButton();
+                                },
+                                textInputAction: TextInputAction.go,
+                              )),
                         ),
                       ],
                     ),
@@ -187,49 +189,52 @@ class SignUp extends GetView<AuthController> {
                 ),
               ),
               Container(
-                margin: const EdgeInsets.only(top: 470.0),
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                  boxShadow: <BoxShadow>[
-                    BoxShadow(
-                      color: CustomTheme.loginGradientStart,
-                      offset: Offset(1.0, 6.0),
-                      blurRadius: 20.0,
-                    ),
-                    BoxShadow(
-                      color: CustomTheme.loginGradientEnd,
-                      offset: Offset(1.0, 6.0),
-                      blurRadius: 20.0,
-                    ),
-                  ],
-                  gradient: LinearGradient(
-                      colors: <Color>[
-                        CustomTheme.loginGradientEnd,
-                        CustomTheme.loginGradientStart
-                      ],
-                      begin: FractionalOffset(0.2, 0.2),
-                      end: FractionalOffset(1.0, 1.0),
-                      stops: <double>[0.0, 1.0],
-                      tileMode: TileMode.clamp),
-                ),
-                child: MaterialButton(
-                  highlightColor: Colors.transparent,
-                  splashColor: CustomTheme.loginGradientEnd,
-                  //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
-                  child: const Padding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 42.0),
-                    child: Text(
-                      'SIGN UP',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25.0,
-                          fontFamily: 'WorkSansBold'),
-                    ),
+                  margin: const EdgeInsets.only(top: 470.0),
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                    boxShadow: <BoxShadow>[
+                      BoxShadow(
+                        color: CustomTheme.loginGradientStart,
+                        offset: Offset(1.0, 6.0),
+                        blurRadius: 20.0,
+                      ),
+                      BoxShadow(
+                        color: CustomTheme.loginGradientEnd,
+                        offset: Offset(1.0, 6.0),
+                        blurRadius: 20.0,
+                      ),
+                    ],
+                    gradient: LinearGradient(
+                        colors: <Color>[
+                          CustomTheme.loginGradientEnd,
+                          CustomTheme.loginGradientStart
+                        ],
+                        begin: FractionalOffset(0.2, 0.2),
+                        end: FractionalOffset(1.0, 1.0),
+                        stops: <double>[0.0, 1.0],
+                        tileMode: TileMode.clamp),
                   ),
-                  onPressed: () => _toggleSignUpButton(),
-                ),
-              )
+                  child: Obx(
+                    () => controller.isAuthRegisterLoading.isTrue
+                        ? LoadingWidget()
+                        : MaterialButton(
+                            highlightColor: Colors.transparent,
+                            splashColor: CustomTheme.loginGradientEnd,
+                            //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 10.0, horizontal: 42.0),
+                              child: Text(
+                                'SIGN UP',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 25.0,
+                                    fontFamily: 'WorkSansBold'),
+                              ),
+                            ),
+                            onPressed: () => _toggleSignUpButton(),
+                          ),
+                  ))
             ],
           ),
         ],
@@ -255,4 +260,3 @@ class SignUp extends GetView<AuthController> {
     controller.obscureTextConfirmPassword.toggle();
   }
 }
-

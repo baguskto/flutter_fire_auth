@@ -26,6 +26,10 @@ class AuthController extends GetxController
 
   late PageController pageController;
 
+  RxBool isAuthLoginLoading = false.obs;
+  RxBool isAuthForgotPassLoading = false.obs;
+  RxBool isAuthRegisterLoading = false.obs;
+
   Color left = Colors.black;
   Color right = Colors.white;
 
@@ -52,13 +56,6 @@ class AuthController extends GetxController
     } else if (i == 1) {
       isLeft.value = false;
     }
-    // if (i == 0) {
-    //   right = Colors.white;
-    //   left = Colors.black;
-    // } else if (i == 1) {
-    //   right = Colors.black;
-    //   left = Colors.white;
-    // }
   }
 
   Future<void> checkAndUpdateEmailVerification() async {
@@ -80,6 +77,8 @@ class AuthController extends GetxController
 
   // Registration
   Future<void> registerUser(String name, String email, String password) async {
+    isAuthRegisterLoading.toggle();
+
     try {
       UserCredential userCredential =
           await _auth.createUserWithEmailAndPassword(
@@ -98,15 +97,19 @@ class AuthController extends GetxController
         'email': email,
         'hasConfirmedEmail': false,
       });
+      isAuthRegisterLoading.toggle();
       Get.snackbar('Email Confirmation Sent',
           'Please check your email for a link to confirm your account.');
     } catch (e) {
+      isAuthRegisterLoading.toggle();
+
       Get.snackbar('Failed', e.toString()); // Handle error
     }
   }
 
   // Login
   Future<void> loginUser(String email, String password) async {
+    isAuthLoginLoading.toggle();
     try {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
         email: email,
@@ -114,11 +117,10 @@ class AuthController extends GetxController
       );
       // After successful login, check and update email verification status
       await checkAndUpdateEmailVerification();
-      Get.toNamed(AppRoutes.HOME);
-      // if (!userCredential.user!.emailVerified) {
-      //   // Handle not verified email
-      // }
+      isAuthLoginLoading.toggle();
+      Get.offAndToNamed(AppRoutes.HOME);
     } catch (e) {
+      isAuthLoginLoading.toggle();
       Get.snackbar('Failed', e.toString()); // Handle error
       // Handle error
     }
@@ -126,11 +128,14 @@ class AuthController extends GetxController
 
   // Forgot Password
   Future<void> sendPasswordResetEmail(String email) async {
+    isAuthForgotPassLoading.toggle();
     try {
       await _auth.sendPasswordResetEmail(email: email);
+      isAuthForgotPassLoading.toggle();
       Get.snackbar('Password Reset Email Sent',
           'Please check your email for a link to reset your password.');
     } catch (e) {
+      isAuthForgotPassLoading.toggle();
       Get.snackbar('Error', 'Failed to send password reset email');
     }
   }
