@@ -4,15 +4,17 @@ import '../../domain/theme/theme.dart';
 import '../controllers/user_controller.dart';
 
 class HomeView extends GetView<UserController> {
+  const HomeView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor:  CustomTheme.loginGradientEnd,
-        title: Text('Home'),
+        title: const Text('Home'),
         actions: [
           PopupMenuButton<bool>(
-            icon: Icon(Icons.filter_alt_rounded),
+            icon: const Icon(Icons.filter_alt_rounded),
             onSelected: (value) {
               controller.filterUsers(value);
             },
@@ -37,7 +39,7 @@ class HomeView extends GetView<UserController> {
       ),
       body: Obx(() {
         if (controller.filteredUsers.isEmpty) {
-          return Center(child: Text('No Found User'));
+          return const Center(child: Text('No Found User'));
         } else {
           return RefreshIndicator(
             onRefresh: () => controller.refreshStatusUser(),

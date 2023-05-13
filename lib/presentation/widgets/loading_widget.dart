@@ -7,9 +7,9 @@ class LoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return const SizedBox(
       width: 45,
-      child: const Center(
+      child: Center(
         child: CircularProgressIndicator(
           color: CustomTheme.loginGradientStart,
         ),

@@ -7,7 +7,7 @@ import '../controllers/auth_controller.dart';
 import '../widgets/loading_widget.dart';
 
 class ForgotPasswordView extends GetView<AuthController> {
-  ForgotPasswordView({super.key});
+  const ForgotPasswordView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,7 @@ class ForgotPasswordView extends GetView<AuthController> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                child: Container(
+                child: SizedBox(
                   width: 300.0,
                   height: 140.0,
                   child: Form(
@@ -128,7 +128,7 @@ class ForgotPasswordView extends GetView<AuthController> {
                   ),
                   child: Obx(
                     () => controller.isAuthForgotPassLoading.isTrue
-                        ? LoadingWidget()
+                        ? const LoadingWidget()
                         : MaterialButton(
                             highlightColor: Colors.transparent,
                             splashColor: CustomTheme.loginGradientEnd,

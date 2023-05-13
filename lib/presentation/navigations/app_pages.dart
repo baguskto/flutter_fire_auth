@@ -7,22 +7,17 @@ class AppPages {
   static final routes = [
     GetPage(
       name: AppRoutes.AUTH,
-      page: () => AuthenticationView(),
+      page: () => const AuthenticationView(),
       binding: AuthBinding(),
     ),
-    // GetPage(
-    //   name: AppRoutes.REGISTER,
-    //   page: () => RegisterView(),
-    //   binding: AuthBinding(),
-    // ),
     GetPage(
       name: AppRoutes.FORGOT_PASSWORD,
-      page: () => ForgotPasswordView(),
+      page: () => const ForgotPasswordView(),
       binding: AuthBinding(),
     ),
     GetPage(
       name: AppRoutes.HOME,
-      page: () => HomeView(),
+      page: () => const HomeView(),
       binding: AuthBinding(),
     ),
   ];

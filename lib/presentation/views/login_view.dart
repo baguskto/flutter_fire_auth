@@ -14,6 +14,8 @@ class SignIn extends GetView<AuthController> {
 
   final RxBool _obscureTextPassword = true.obs;
 
+  SignIn({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,7 +31,7 @@ class SignIn extends GetView<AuthController> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                child: Container(
+                child: SizedBox(
                   width: 300.0,
                   height: 260.0,
                   child: Form(
@@ -140,7 +142,7 @@ class SignIn extends GetView<AuthController> {
                   ),
                   child: Obx(
                     () => controller.isAuthLoginLoading.isTrue
-                        ? LoadingWidget()
+                        ? const LoadingWidget()
                         : MaterialButton(
                             highlightColor: Colors.transparent,
                             splashColor: CustomTheme.loginGradientEnd,
@@ -188,60 +190,10 @@ class SignIn extends GetView<AuthController> {
     );
   }
 
-  void _toggleSignInButton() {
-    // CustomSnackBar(context, const Text('Login button pressed'));
-  }
+
 
   void _toggleLogin() {
     _obscureTextPassword.toggle();
   }
 }
 
-// class LoginView extends GetView<AuthController> {
-//   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-//   final TextEditingController emailController = TextEditingController();
-//   final TextEditingController passwordController = TextEditingController();
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Login'),
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Form(
-//           key: _formKey,
-//           child: Column(
-//             children: [
-//               TextFormField(
-//                 controller: emailController,
-//                 decoration: InputDecoration(labelText: 'Email'),
-//                 validator: (s) => controller.validateEmail(s!),
-//               ),
-//               TextFormField(
-//                 controller: passwordController,
-//                 decoration: InputDecoration(labelText: 'Password'),
-//                 validator: (s) => controller.validatePassword(s!),
-//               ),
-//               ElevatedButton(
-//                 onPressed: () {
-//                   if (_formKey.currentState!.validate()) {
-//                     controller.loginUser(
-//                       emailController.text,
-//                       passwordController.text,
-//                     );
-//                   }
-//                 },
-//                 child: Text('Login'),
-//               ),
-//               TextButton(
-//                   onPressed: () => Get.toNamed(AppRoutes.REGISTER),
-//                   child: Text('I dont have account'))
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }

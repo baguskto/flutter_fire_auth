@@ -7,12 +7,9 @@ import '../../domain/utils/bubble_indicator_painter.dart';
 import 'login_view.dart';
 import 'register_view.dart';
 
-// import 'package:the_gorgeous_login/pages/widgets/sign_in.dart';
-// import 'package:the_gorgeous_login/pages/widgets/sign_up.dart';
-// import 'package:the_gorgeous_login/theme.dart';
-// import 'package:the_gorgeous_login/utils/bubble_indicator_painter.dart';
-
 class AuthenticationView extends GetView<AuthController> {
+  const AuthenticationView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +59,7 @@ class AuthenticationView extends GetView<AuthController> {
                     ),
                     ConstrainedBox(
                       constraints: const BoxConstraints.expand(),
-                      child: SignUp(),
+                      child: const SignUp(),
                     ),
                   ],
                 ),
@@ -138,7 +135,7 @@ class AuthenticationView extends GetView<AuthController> {
   }
 
   void _onSignUpButtonPress() {
-    controller.pageController?.animateToPage(1,
+    controller.pageController.animateToPage(1,
         duration: const Duration(milliseconds: 500), curve: Curves.decelerate);
   }
 }

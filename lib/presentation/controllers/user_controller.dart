@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_fire_auth/presentation/controllers/auth_controller.dart';
 import 'package:get/get.dart';
 
 import '../../data/models/user_model.dart';
@@ -61,5 +59,3 @@ class UserController extends GetxController {
     }
   }
 }
-
-

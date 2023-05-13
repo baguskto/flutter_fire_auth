@@ -7,7 +7,7 @@ import '../controllers/auth_controller.dart';
 import '../widgets/loading_widget.dart';
 
 class SignUp extends GetView<AuthController> {
-  SignUp({super.key});
+  const SignUp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class SignUp extends GetView<AuthController> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                child: Container(
+                child: SizedBox(
                   width: 300.0,
                   height: 500.0,
                   child: Form(
@@ -218,7 +218,7 @@ class SignUp extends GetView<AuthController> {
                   ),
                   child: Obx(
                     () => controller.isAuthRegisterLoading.isTrue
-                        ? LoadingWidget()
+                        ? const LoadingWidget()
                         : MaterialButton(
                             highlightColor: Colors.transparent,
                             splashColor: CustomTheme.loginGradientEnd,
